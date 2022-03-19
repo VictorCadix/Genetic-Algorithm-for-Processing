@@ -26,6 +26,18 @@ class Population{
       i++;
     }
   }
+  
+  int get_parent() {
+    float target = random(100);
+    float accum_prob = 0;
+    for (int i = 0; i < nIndividues; i++) {
+      accum_prob += probability[i];
+      if (accum_prob >= target) {
+        return i;
+      }
+    }
+  }
+  
 }
 
 class Individual{

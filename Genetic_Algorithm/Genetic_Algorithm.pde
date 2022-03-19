@@ -1,8 +1,9 @@
 Population population;
 int nParameters = 2;
+int nIndiv = 10;
 
 void setup(){
-  population = new Population(10, nParameters);
+  population = new Population(nIndiv, nParameters);
   
   print("Setup done");
 }
@@ -17,9 +18,12 @@ void draw(){
   }
   
   //Selection
-  
+  population.calculate_selection_probability();
+  int p1 = population.get_parent();
+  int p2 = population.get_parent();
   
   //crossover
+  
   
   //mutation
   
