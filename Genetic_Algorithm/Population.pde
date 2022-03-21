@@ -36,15 +36,44 @@ class Population{
         return i;
       }
     }
+    println("ERROR: get parent index");
+    return -1; //Error
   }
   
+  Individual crossover(int parent1, int parent2){
+    int nParameters = individuals[parent1].chromosome_length;
+    Individual child = new Individual(nParameters);
+    
+    //one-point crossover
+    int crossover_point = int(random(nParameters));
+    
+    for (int i = 0; i < crossover_point; i++){
+      child.chromosome[i] = individuals[parent1].chromosome[i];
+    }
+    
+    for (int i = crossover_point; i < nParameters; i++){
+      child.chromosome[i] = individuals[parent2].chromosome[i];
+    }
+    
+    return child;
+  }
+    
 }
 
 class Individual{
+  int chromosome_length;
   float[] chromosome;
   float fitness;
   
   Individual(int chro_length){
+    chromosome_length = chro_length;
     chromosome = new float [chro_length];
+    init(-1, 1);
+  }
+  
+  void init(int min, int max){
+    for(float chrom : chromosome){
+      chrom = random(min, max);
+    }
   }
 }

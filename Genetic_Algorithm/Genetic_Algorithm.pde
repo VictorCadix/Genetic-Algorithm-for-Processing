@@ -23,7 +23,7 @@ void draw(){
   int p2 = population.get_parent();
   
   //crossover
-  
+  Individual child = population.crossover(p1, p2);
   
   //mutation
   
