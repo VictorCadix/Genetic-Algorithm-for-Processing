@@ -57,6 +57,12 @@ class Population{
     
     return child;
   }
+  
+  void printReport(){
+    for (int i = 0; i < nIndividues; i++){
+      individuals[i].printReport();
+    }
+  }
     
 }
 
@@ -72,8 +78,16 @@ class Individual{
   }
   
   void init(int min, int max){
-    for(float chrom : chromosome){
-      chrom = random(min, max);
+    for(int i = 0; i < chromosome_length; i++){
+      chromosome [i] = random(min, max);
     }
+  }
+  
+  void printReport(){
+    for(int i = 0; i < chromosome_length; i++){
+      print(str(chromosome [i]) + " ");
+    }
+    print("\t");
+    println(fitness);
   }
 }

@@ -5,7 +5,7 @@ int nIndiv = 10;
 void setup(){
   population = new Population(nIndiv, nParameters);
   
-  print("Setup done");
+  println("Setup done");
 }
 
 void draw(){
@@ -17,18 +17,33 @@ void draw(){
     indiv.fitness = 1/error;
   }
   
+  println("New crew");
+  population.printReport();
+  println();
+  
   //Selection
   population.calculate_selection_probability();
-  int p1 = population.get_parent();
-  int p2 = population.get_parent();
   
-  //crossover
-  Individual child = population.crossover(p1, p2);
+  Individual child [] = new Individual [nIndiv];
+  for (int i = 0; i < nIndiv; i++){
+    int p1 = population.get_parent();
+    int p2 = population.get_parent();
+    
+    println(str(p1) + ":" + str(p2));
+    
+    //crossover
+    child[i] = population.crossover(p1, p2);
+    
+    //mutation
+    
+    
+  }
   
-  //mutation
-  
-  
-  
+  // Renew population
+  for (int i = 0; i < nIndiv; i++){
+    population.individuals[i] = child[i];    
+  }
+    
 }
 
 float genes2model(float[] chromosome){
