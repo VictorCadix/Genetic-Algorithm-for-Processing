@@ -35,7 +35,7 @@ void draw(){
     child[i] = population.crossover(p1, p2);
     
     //mutation
-    
+    child[i].addMutation(0.01);
     
   }
   

@@ -71,6 +71,8 @@ class Individual{
   float[] chromosome;
   float fitness;
   
+  float chr_min, chr_max;
+  
   Individual(int chro_length){
     chromosome_length = chro_length;
     chromosome = new float [chro_length];
@@ -78,8 +80,19 @@ class Individual{
   }
   
   void init(int min, int max){
+    chr_min = min;
+    chr_max = max;
+    
     for(int i = 0; i < chromosome_length; i++){
       chromosome [i] = random(min, max);
+    }
+  }
+  
+  void addMutation(float mutation_rate){
+    for(int i = 0; i < chromosome_length; i++){
+      if (random(1) < mutation_rate){
+        chromosome [i] = random(chr_min, chr_max);
+      }
     }
   }
   
