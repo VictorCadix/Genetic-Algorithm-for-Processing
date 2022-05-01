@@ -39,7 +39,7 @@ void draw(){
       c2 = (c2 >> 16) & 0xFF;
       error += (c1 - c2) * (c1 - c2);
     }
-    
+    error /= img.pixels.length;
     indiv.fitness = 1/error;
   }
   
@@ -64,16 +64,17 @@ void draw(){
     child[i].addMutation(0.01);
     
   }
+  int best = population.getBetsIndiv();
+  PImage model = genes2image(population.individuals[best].chromosome);
+  println(population.individuals[best].fitness);
+  image(target_image, 0, 0, 400, 400);
+  image(model, 400, 0, 400, 400);
+  
   
   // Renew population
   for (int i = 0; i < nIndiv; i++){
     population.individuals[i] = child[i];    
   }
-  
-  PImage model = genes2image(population.individuals[0].chromosome);
-  
-  image(target_image, 0, 0, 400, 400);
-  image(model, 400, 0, 400, 400);
 }
 
 PImage genes2image(float[] chromosome){
