@@ -36,7 +36,13 @@ class Population{
         return i;
       }
     }
+    if (target <= 100){
+      return nIndividues -1;
+    }
+    
     println("ERROR: get parent index");
+    println("target: " + str(target));
+    println("accum_prob: " + str(accum_prob));
     return -1; //Error
   }
   
