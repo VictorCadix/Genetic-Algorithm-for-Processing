@@ -1,12 +1,17 @@
 Population population;
 int nParameters;
-int nIndiv = 100;
+int nIndiv = 10000;
+int nCrossPoints = 1000;
+float mutation_rate = 0.0001;
+int elitism = 0;
 
 float min_error;
 
 int generation = 0;
 
 PImage target_image;
+
+PrintWriter log_file;
 
 void setup(){
   size(800,400);
@@ -17,6 +22,9 @@ void setup(){
   
   population = new Population(nIndiv, nParameters);
   
+  String name = "log_" + str(nIndiv) + "i_" + str(mutation_rate) + "m_" + str(nCrossPoints) + "cp_"  + str(elitism) + "E_#";
+  log_file = createWriter("Data/" + name + ".txt");
+  log_file.println("generation,best_fitness");
   println("Setup done");
 }
 
@@ -58,10 +66,10 @@ void draw(){
     //println(str(p1) + ":" + str(p2));
     
     //crossover
-    child[i] = population.crossover(p1, p2);
+    child[i] = population.crossover(p1, p2, nCrossPoints);
     
     //mutation
-    child[i].addMutation(0.01);
+    child[i].addMutation(mutation_rate);
     
   }
   int best = population.getBetsIndiv();
@@ -69,6 +77,10 @@ void draw(){
   println(population.individuals[best].fitness);
   image(target_image, 0, 0, 400, 400);
   image(model, 400, 0, 400, 400);
+  
+  log_file.print(generation);
+  log_file.print(",");
+  log_file.println(population.individuals[best].fitness);
   
   
   // Renew population
@@ -86,4 +98,11 @@ PImage genes2image(float[] chromosome){
   }
   img.updatePixels();
   return img;
+}
+
+void exit(){
+  log_file.flush();
+  log_file.close();
+  println("Closing");
+  super.exit();//let processing carry with it's regular exit routine
 }
