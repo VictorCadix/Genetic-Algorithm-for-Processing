@@ -40,22 +40,40 @@ class Population{
     return -1; //Error
   }
   
-  Individual crossover(int parent1, int parent2){
+  Individual crossover(int parent1, int parent2, int nPoints){
     int nParameters = individuals[parent1].chromosome_length;
     Individual child = new Individual(nParameters);
     
-    //one-point crossover
-    int crossover_point = int(random(nParameters));
+    //one-point crossover for nPoints=1
+    int last_point = 0;
     
-    for (int i = 0; i < crossover_point; i++){
-      child.chromosome[i] = individuals[parent1].chromosome[i];
+    for (int point = 0; point < nPoints; point++){
+      int parent = (point % 2 == 0)? parent1 : parent2;
+      
+      int crossover_point = int(random(last_point, nParameters));
+      crossover_point = (crossover_point > nParameters)? nParameters : crossover_point;
+      
+      for (int i = last_point; i < crossover_point; i++){
+        child.chromosome[i] = individuals[parent].chromosome[i];
+      }
+      
+      last_point = crossover_point;
+      if (crossover_point == nParameters){
+        break;
+      }
     }
-    
-    for (int i = crossover_point; i < nParameters; i++){
-      child.chromosome[i] = individuals[parent2].chromosome[i];
-    }
-    
     return child;
+  }
+  
+  int getBetsIndiv(){
+    int index = 0;
+    
+    for (int i = 1; i < nIndividues; i++){
+      if (individuals[i].fitness > individuals[index].fitness){
+        index = i;
+      }
+    }
+    return index;
   }
   
   void printReport(){
