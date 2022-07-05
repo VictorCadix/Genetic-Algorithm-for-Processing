@@ -12,6 +12,7 @@ int generation = 0;
 PImage target_image;
 
 PrintWriter log_file;
+long last_time = 0;
 
 void setup(){
   size(800,400);
@@ -32,6 +33,8 @@ void draw(){
   generation++;
   print("Generation: ");
   println(generation);
+  println(millis()-last_time);
+  last_time = millis();
   
   //Evaluate
   for (Individual indiv: population.individuals){
