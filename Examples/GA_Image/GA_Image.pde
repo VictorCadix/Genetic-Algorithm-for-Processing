@@ -1,6 +1,6 @@
 Population population;
 int nParameters;
-int nIndiv = 10000;
+int nIndiv = 1000;
 int nCrossPoints = 1000;
 float mutation_rate = 0.0001;
 int elitism = 0;
