@@ -4,6 +4,7 @@ int nIndiv = 10;
 
 void setup(){
   population = new Population(nIndiv, nParameters);
+  population.crossover_type = "multiple_random";
   
   println("Setup done");
 }
@@ -24,7 +25,10 @@ void draw(){
   //Selection
   population.calculate_selection_probability();
   
-  Individual child [] = new Individual [nIndiv];
+  Individual children [] = new Individual [nIndiv];
+  for (int i = 0; i < nIndiv; i++){
+    children[i] = new Individual(nParameters);
+  }
   for (int i = 0; i < nIndiv; i++){
     int p1 = population.get_parent();
     int p2 = population.get_parent();
@@ -32,16 +36,16 @@ void draw(){
     println(str(p1) + ":" + str(p2));
     
     //crossover
-    child[i] = population.crossover(p1, p2);
+    children[i] = population.crossover(p1, p2, 1);
     
     //mutation
-    child[i].addMutation(0.01);
+    children[i].addMutation(0.01);
     
   }
   
   // Renew population
   for (int i = 0; i < nIndiv; i++){
-    population.individuals[i] = child[i];    
+    population.individuals[i] = children[i];
   }
     
 }
