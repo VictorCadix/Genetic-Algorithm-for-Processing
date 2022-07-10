@@ -68,7 +68,6 @@ class Population{
   Individual multiple_random_crossover(int parent1, int parent2, int nPoints){
     int nParameters = individuals[parent1].chromosome_length;
     Individual child = new Individual(nParameters);
-    print("A");
 
     int chunk_size = nParameters / nPoints;
     int last_point = 0;
