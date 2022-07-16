@@ -1,3 +1,5 @@
+import GeneticAlgorithm.*;
+
 Population population;
 int nParameters = 2;
 int nIndiv = 10;
