@@ -1,6 +1,7 @@
 package GeneticAlgorithm;
 
 import processing.core.*;
+import processing.core.PApplet;
 
 public class Population{
     // The parent Processing applet
@@ -115,7 +116,7 @@ public class Population{
         return child;
     }
   
-    int getBetsIndiv(){
+    public int getBetsIndiv(){
         int index = 0;
         
         for (int i = 1; i < nIndividues; i++){
