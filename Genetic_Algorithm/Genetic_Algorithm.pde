@@ -5,7 +5,7 @@ int nParameters = 2;
 int nIndiv = 10;
 
 void setup(){
-  population = new Population(nIndiv, nParameters);
+  population = new Population(this, nIndiv, nParameters);
   population.crossover_type = "multiple_random";
   
   println("Setup done");
@@ -29,13 +29,13 @@ void draw(){
   
   Individual children [] = new Individual [nIndiv];
   for (int i = 0; i < nIndiv; i++){
-    children[i] = new Individual(nParameters);
+    children[i] = new Individual(this, nParameters);
   }
   for (int i = 0; i < nIndiv; i++){
     int p1 = population.get_parent();
     int p2 = population.get_parent();
     
-    println(str(p1) + ":" + str(p2));
+    //println(str(p1) + ":" + str(p2));
     
     //crossover
     children[i] = population.crossover(p1, p2, 1);

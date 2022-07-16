@@ -1,13 +1,19 @@
 package GeneticAlgorithm;
 
+import processing.core.*;
+
 public class Individual{
+    // The parent Processing applet
+	protected final PApplet parent;
+
     int chromosome_length;
-    float[] chromosome;
-    float fitness;
+    public float[] chromosome;
+    public float fitness;
     
     float chr_min, chr_max;
     
-    Individual(int chro_length){
+    public Individual(PApplet parent, int chro_length){
+        this.parent = parent;
         chromosome_length = chro_length;
         chromosome = new float [chro_length];
         init(-1, 1);
@@ -18,24 +24,24 @@ public class Individual{
         chr_max = max;
         
         for(int i = 0; i < chromosome_length; i++){
-            chromosome [i] = random(min, max);
+            chromosome [i] = parent.random(min, max);
         }
     }
   
-    void addMutation(float mutation_rate){
+    public void addMutation(float mutation_rate){
         for(int i = 0; i < chromosome_length; i++){
-            if (random(1) < mutation_rate){
-                chromosome [i] = random(chr_min, chr_max);
-                println("mutation gene: " + str(i));
+            if (parent.random(1) < mutation_rate){
+                chromosome [i] = parent.random(chr_min, chr_max);
+                parent.println("mutation gene: " + parent.str(i));
             }
         }
     }
   
     void printReport(){
         for(int i = 0; i < chromosome_length; i++){
-            print(str(chromosome [i]) + " ");
+            parent.print(parent.str(chromosome [i]) + " ");
         }
-        print("-> ");
-        println(fitness);
+        parent.print("-> ");
+        parent.println(fitness);
     }
 }
