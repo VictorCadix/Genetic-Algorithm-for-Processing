@@ -7,11 +7,11 @@ public class Population{
     // The parent Processing applet
     protected final PApplet parent;
 
-    int nIndividues;
+    public int nIndividues;
     float mutation_rate;
     
     public Individual[] individuals;
-    float[] probability;
+    public float[] probability;
     
     public String crossover_type = "";
   

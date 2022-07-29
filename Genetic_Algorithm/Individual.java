@@ -6,7 +6,7 @@ public class Individual{
     // The parent Processing applet
 	protected final PApplet parent;
 
-    int chromosome_length;
+    public int chromosome_length;
     public float[] chromosome;
     public float fitness;
     
