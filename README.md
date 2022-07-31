@@ -4,6 +4,31 @@ Work in progress
 
 The object of this repo is to ease the use of the Genetic Algorithm (GA) in Processing scketches.
 
+## Build and Install the library:
+
+Compile the .java class files:
+Go to the src folder and run the following command (for windows):
+
+    javac -cp "/path/to/core.jar" -d . *.java
+
+Where ```"/path/to/core.jar"``` is the location of the core.jar file. For example ```"C:\Program Files\processing-4.0b6\core\library\core.jar"```.
+
+After that a folder named "GeneticAlgorithm" with the compiled classes shuld have been created.
+
+To create the compress .jar file of the folder run the command:
+
+    jar -cf GeneticAlgorithm.jar GeneticAlgorithm
+
+Place the .jar file in a folder named "library" inside another one named "GeneticAlgorithm".
+
+    GeneticAlgorithm/library/GeneticAlgorithm.jar
+
+For the last step move the folder to the libraries folder of processing located probably in your documents folder.
+
+    "Path\to\User\Documents\Processing\libraries"
+
+To import the library put ```import GeneticAlgorithm.*;``` on top of your sketch and *voilà, c'est fait*.
+
 ## How to use it:
 
 ### 1: Declare and initialize the Population

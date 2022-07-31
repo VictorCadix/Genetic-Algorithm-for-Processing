@@ -1,7 +1,9 @@
+import GeneticAlgorithm.*;
+
 Population population;
 int nParameters;
 int nIndiv = 1000;
-int nCrossPoints = 1000;
+int nCrossPoints = 100;
 float mutation_rate = 0.0001;
 int elitism = 0;
 
@@ -21,7 +23,8 @@ void setup(){
   nParameters = target_image.height * target_image.width;
   println("nParameters: " + str(nParameters));
   
-  population = new Population(nIndiv, nParameters);
+  population = new Population(this, nIndiv, nParameters);
+  population.crossover_type = "multiple_random";
   
   String name = "log_" + str(nIndiv) + "i_" + str(mutation_rate) + "m_" + str(nCrossPoints) + "cp_"  + str(elitism) + "E_#";
   log_file = createWriter("Data/" + name + ".txt");
