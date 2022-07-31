@@ -7,7 +7,7 @@ The object of this repo is to ease the use of the Genetic Algorithm (GA) in Proc
 ## Build and Install the library:
 
 Compile the .java class files:
-Go to the src folder and run the following command (for windows):
+Go to the src/GeneticAlgorithm folder and run the following command (for windows):
 
     javac -cp "/path/to/core.jar" -d . *.java
 
