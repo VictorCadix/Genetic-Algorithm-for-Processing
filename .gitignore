@@ -1,8 +1,5 @@
 
-Examples/GA_Image/Population.pde
-Examples/GA_Image/Data/logs/*
-Examples/GA_Image/Data/*
-examples/GA_Image/windows-amd64/*
+examples/image_reconstruction/Data/*
 *.autosave
 *.class
 src/GeneticAlgorithm/GeneticAlgorithm.jar
