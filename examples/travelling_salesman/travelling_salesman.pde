@@ -2,7 +2,7 @@
 import GeneticAlgorithm.*;
 
 Population population;
-int nIndiv = 100;
+int nIndiv = 2000;
 int nCrossPoints = 10;
 float mutation_rate = 0.01;
 int elitism = 0;
@@ -10,7 +10,7 @@ int elitism = 0;
 int generation = 0;
 
 ArrayList <PVector> cities;
-int nCities = 10;
+int nCities = 20;
 
 void setup(){
   size(800,800);
@@ -42,12 +42,18 @@ void draw(){
       float Y2 = city2.y * height;
       distance += sqrt((X2-X1)*(X2-X1) + (Y2-Y1)*(Y2-Y1));
     }
+    
+    int cities_visited = 0;
     for (int i = 0; i < nCities; i++){
       for (int j = 0; j < route.length; j++){
-        
+        if (route[j] == i){
+          cities_visited++;
+          break;
+        }
       }
     }
-    indiv.fitness = 1/(distance + 1e-6);
+    int cities_not_visited = nCities - cities_visited;
+    indiv.fitness = 1/((distance + 1e-6) + cities_not_visited * 1000);
   }
   
   //Selection
